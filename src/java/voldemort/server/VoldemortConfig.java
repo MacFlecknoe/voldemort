@@ -87,6 +87,7 @@ public class VoldemortConfig implements Serializable {
 
     private int socketTimeoutMs;
     private int socketBufferSize;
+    private boolean socketKeepAlive;
 
     private boolean useNioConnector;
     private int nioConnectorSelectors;
@@ -201,6 +202,7 @@ public class VoldemortConfig implements Serializable {
         this.streamMaxReadBytesPerSec = props.getInt("stream.read.byte.per.sec", 10 * 1000 * 1000);
         this.streamMaxWriteBytesPerSec = props.getInt("stream.write.byte.per.sec", 10 * 1000 * 1000);
 
+        this.socketKeepAlive = props.getBoolean("socket.keepalive", false);
         this.socketTimeoutMs = props.getInt("socket.timeout.ms", 4000);
         this.socketBufferSize = (int) props.getBytes("socket.buffer.size", 32 * 1024);
 
@@ -645,6 +647,14 @@ public class VoldemortConfig implements Serializable {
 
     public void setSocketTimeoutMs(int socketTimeoutMs) {
         this.socketTimeoutMs = socketTimeoutMs;
+    }
+
+    public void setSocketKeepAlive(boolean on) {
+        this.socketKeepAlive = on;
+    }
+
+    public boolean getSocketKeepAlive() {
+        return this.socketKeepAlive;
     }
 
     public int getRoutingTimeoutMs() {

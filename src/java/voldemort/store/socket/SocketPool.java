@@ -50,13 +50,16 @@ public class SocketPool {
     public SocketPool(int maxConnectionsPerNode,
                       int connectionTimeoutMs,
                       int soTimeoutMs,
-                      int socketBufferSize) {
+                      int socketBufferSize,
+                      boolean socketKeepAlive) {
         ResourcePoolConfig config = new ResourcePoolConfig().setIsFair(true)
                                                             .setMaxPoolSize(maxConnectionsPerNode)
                                                             .setMaxInvalidAttempts(maxConnectionsPerNode)
                                                             .setTimeout(connectionTimeoutMs,
                                                                         TimeUnit.MILLISECONDS);
-        this.socketFactory = new SocketResourceFactory(soTimeoutMs, socketBufferSize);
+        this.socketFactory = new SocketResourceFactory(soTimeoutMs,
+                                                       socketBufferSize,
+                                                       socketKeepAlive);
         this.pool = new KeyedResourcePool<SocketDestination, SocketAndStreams>(socketFactory,
                                                                                config);
         this.checkouts = new AtomicInteger(0);

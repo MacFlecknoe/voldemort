@@ -51,7 +51,8 @@ public class SocketStoreClientFactory extends AbstractStoreClientFactory {
         this.socketPool = new SocketPool(config.getMaxConnectionsPerNode(),
                                          config.getConnectionTimeout(TimeUnit.MILLISECONDS),
                                          config.getSocketTimeout(TimeUnit.MILLISECONDS),
-                                         config.getSocketBufferSize());
+                                         config.getSocketBufferSize(),
+                                         config.getSocketKeepAlive());
         registerJmx(JmxUtils.createObjectName(SocketPool.class), socketPool);
     }
 

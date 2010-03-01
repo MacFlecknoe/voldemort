@@ -112,7 +112,8 @@ public class StorageService extends AbstractService {
         this.socketPool = new SocketPool(config.getClientMaxConnectionsPerNode(),
                                          config.getClientConnectionTimeoutMs(),
                                          config.getSocketTimeoutMs(),
-                                         config.getSocketBufferSize());
+                                         config.getSocketBufferSize(),
+                                         config.getSocketKeepAlive());
     }
 
     private void initStorageConfig(String configClassName) {

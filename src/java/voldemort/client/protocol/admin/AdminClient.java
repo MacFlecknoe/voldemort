@@ -154,7 +154,8 @@ public class AdminClient {
         return new SocketPool(config.getMaxConnectionsPerNode(),
                               config.getConnectionTimeout(TimeUnit.MILLISECONDS),
                               config.getSocketTimeout(TimeUnit.MILLISECONDS),
-                              config.getSocketBufferSize());
+                              config.getSocketBufferSize(),
+                              config.getSocketKeepAlive());
     }
 
     private <T extends Message.Builder> T sendAndReceive(int nodeId, Message message, T builder) {
