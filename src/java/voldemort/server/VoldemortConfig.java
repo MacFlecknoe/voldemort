@@ -88,6 +88,7 @@ public class VoldemortConfig implements Serializable {
 
     private int socketTimeoutMs;
     private int socketBufferSize;
+    private boolean socketKeepAlive;
 
     private boolean useNioConnector;
     private int nioConnectorSelectors;
@@ -227,6 +228,7 @@ public class VoldemortConfig implements Serializable {
 
         this.socketTimeoutMs = props.getInt("socket.timeout.ms", 4000);
         this.socketBufferSize = (int) props.getBytes("socket.buffer.size", 32 * 1024);
+        this.socketKeepAlive = props.getBoolean("socket.keepalive", false);
 
         this.useNioConnector = props.getBoolean("enable.nio.connector", false);
         this.nioConnectorSelectors = props.getInt("nio.connector.selectors",
@@ -886,6 +888,14 @@ public class VoldemortConfig implements Serializable {
 
     public void setSocketBufferSize(int socketBufferSize) {
         this.socketBufferSize = socketBufferSize;
+    }
+
+    public boolean getSocketKeepAlive() {
+        return this.socketKeepAlive;
+    }
+
+    public void setSocketKeepAlive(boolean on) {
+        this.socketKeepAlive = on;
     }
 
     public boolean getUseNioConnector() {
