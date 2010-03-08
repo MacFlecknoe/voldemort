@@ -93,7 +93,7 @@ public class RemoteStoreComparisonTest {
         String storeName = "test";
         StoreRepository repository = new StoreRepository();
         repository.addLocalStore(new InMemoryStorageEngine<ByteArray, byte[]>(storeName));
-        SocketPool socketPool = new SocketPool(10, 1000, 1000, 32 * 1024, false);
+        SocketPool socketPool = new SocketPool(10, 1000, 1000, 32 * 1024);
         final SocketStore socketStore = new SocketStore(storeName,
                                                         new SocketDestination("localhost",
                                                                               6666,

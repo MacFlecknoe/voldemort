@@ -67,6 +67,13 @@ public class SocketPool {
         this.avgWaitNs = new AtomicLong(0);
     }
 
+    public SocketPool(int maxConnectionsPerNode,
+                      int connectionTimeoutMs,
+                      int soTimeoutMs,
+                      int socketBufferSize) {
+        this(maxConnectionsPerNode, connectionTimeoutMs, soTimeoutMs, socketBufferSize, false);
+    }
+
     /**
      * Checkout a socket from the pool
      * 

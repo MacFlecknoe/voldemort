@@ -42,7 +42,7 @@ public class SocketPoolTest extends TestCase {
     @Override
     public void setUp() {
         this.port = ServerTestUtils.findFreePort();
-        this.pool = new SocketPool(maxConnectionsPerNode, 1000, 1000, 32 * 1024, false);
+        this.pool = new SocketPool(maxConnectionsPerNode, 1000, 1000, 32 * 1024);
         this.dest1 = new SocketDestination("localhost", port, RequestFormatType.VOLDEMORT_V1);
         RequestHandlerFactory handlerFactory = ServerTestUtils.getSocketRequestHandlerFactory(new StoreRepository());
         this.server = new SocketServer(port,
